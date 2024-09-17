@@ -1,0 +1,37 @@
+version: '3.9'
+services:
+  md:
+    build: 
+      context: './md'
+      dockerfile: Dockerfile.dev
+    container_name: md
+    ports:
+      - "4000:4000"
+    links:
+      - database
+    volumes:
+      - ./md:/home/app
+      - uploads:/home/app/uploads
+  category:
+    build: 
+      context: './category'
+      dockerfile: Dockerfile.dev
+    container_name: category
+    ports:
+      - "5000:5000"
+    links:
+      - database
+    volumes:
+      - ./category:/home/app
+  database:
+    image: mongo
+    ports:
+      - "27018:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+    volumes:
+      - mongo_data:/data/db
+volumes:
+  mongo_data:
+  uploads:

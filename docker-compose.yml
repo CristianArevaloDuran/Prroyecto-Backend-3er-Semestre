@@ -1,0 +1,30 @@
+version: '3.9'
+services:
+  md:
+    build: "./md"
+    container_name: md
+    ports:
+      - "4000:4000"
+    links:
+      - database
+    volumes:
+      - uploads:/home/app/uploads
+  category:
+    build: "./category"
+    container_name: category
+    ports:
+      - "5000:5000"
+    links:
+      - database
+  database:
+    image: mongo
+    ports:
+      - "27018:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+    volumes:
+      - mongo_data:/data/db
+volumes:
+  mongo_data:
+  uploads:
