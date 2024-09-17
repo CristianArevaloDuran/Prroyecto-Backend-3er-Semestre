@@ -53,6 +53,15 @@ app.get('/markdowns', async (req, res) => {
                 }
             }, {
                 $unwind: '$category'
+            }, {
+                $lookup: {
+                    from: 'difficulties',
+                    localField: 'difficulty',
+                    foreignField: '_id',
+                    as: 'difficulty'
+                }
+            }, {
+                $unwind: '$difficulty'
             }
         ]);
         res.send(markdowns);

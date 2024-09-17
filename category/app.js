@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 connection();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4001;
 
 // Get
 

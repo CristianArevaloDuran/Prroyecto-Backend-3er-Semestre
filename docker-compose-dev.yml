@@ -18,11 +18,22 @@ services:
       dockerfile: Dockerfile.dev
     container_name: category
     ports:
-      - "5000:5000"
+      - "4001:4001"
     links:
       - database
     volumes:
       - ./category:/home/app
+  difficulty:
+    build: 
+      context: './difficulty'
+      dockerfile: Dockerfile.dev
+    container_name: difficulty
+    ports:
+      - "4002:4002"
+    links:
+      - database
+    volumes:
+      - ./difficulty:/home/app
   database:
     image: mongo
     ports:

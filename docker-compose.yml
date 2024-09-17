@@ -16,6 +16,13 @@ services:
       - "5000:5000"
     links:
       - database
+  difficulty:
+    build: "./difficulty"
+    container_name: difficulty
+    ports:
+      - "4002:4002"
+    links:
+      - database
   database:
     image: mongo
     ports:
