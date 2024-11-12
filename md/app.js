@@ -62,6 +62,10 @@ app.get('/markdowns', async (req, res) => {
                 }
             }, {
                 $unwind: '$difficulty'
+            }, {
+                $sort: {
+                    createdAt: -1
+                }
             }
         ]);
         res.send(markdowns);
