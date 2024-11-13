@@ -138,7 +138,7 @@ app.delete('/delete/:id', async (req, res) => {
         
         fs.unlinkSync(markdown.path);
         await markdownSchema.findByIdAndDelete(id);
-        return res.json({ message: 'Markdown file deleted successfully' });
+        return res.status(200).json({ message: 'Markdown file deleted successfully' });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Failed to delete markdown file' });
